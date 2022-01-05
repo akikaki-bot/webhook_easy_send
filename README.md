@@ -1,11 +1,12 @@
-"# webhook_easy_send" 
+# webhookをもっと簡単に。
+## More easy to Webhook.
 
 - How to use 
 
 ```
 const webhook = new Client();
 
-webhook.url = WebhookURL
+webhook.url = "WebhookURL"
 
 function send (){
     webhook.send('test!!!')
@@ -13,4 +14,7 @@ function send (){
 
 send()
 ```
-"# wfe" 
+
+### P.S.
+This package support typescript only. sry :(
+
