@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "byte-size": "^8.1.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
-    "axios": "^0.24.0"
   }
 }
