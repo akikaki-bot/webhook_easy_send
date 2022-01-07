@@ -14,7 +14,3 @@ function send (){
 
 send()
 ```
-
-### P.S.
-This package support typescript only. sry :(
-
