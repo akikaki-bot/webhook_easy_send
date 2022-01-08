@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
-exports.Client = void 0;
+exports.Wsend = void 0;
 var axios_1 = require("axios");
-var Client = /** @class */ (function () {
-    function Client() {
+var Wsend = /** @class */ (function () {
+    function Wsend() {
     }
     /**
     * @This is Webhook send
     */
-    Client.prototype.send = function (strings) {
+    Wsend.prototype.send = function (strings) {
         var config = {
             headers: {
                 "Accept": "application/json",
@@ -27,6 +27,6 @@ var Client = /** @class */ (function () {
             throw new Error('Unknown WebHook Error');
         }
     };
-    return Client;
+    return Wsend;
 }());
-exports.Client = Client;
+exports.Wsend = Wsend;

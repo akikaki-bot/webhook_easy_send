@@ -4,7 +4,7 @@
 - How to use 
 
 ```
-const webhook = new Client();
+const webhook = new Wsend();
 
 webhook.url = "WebhookURL"
 

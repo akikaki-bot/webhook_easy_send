@@ -1,6 +1,6 @@
 import axios from "axios"
 
-class Client　{
+class Wsend {
   /**
    * @This is url config.
    */
@@ -33,5 +33,5 @@ class Client　{
 
 }
 
-export { Client } ;
+export { Wsend } ;
 
