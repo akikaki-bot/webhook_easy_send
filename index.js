@@ -9,17 +9,12 @@ var Wsend = /** @class */ (function () {
     * @This is Webhook send
     */
     Wsend.prototype.send = function (strings) {
-        var config = {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        };
-        var post = {
-            content: strings
-        };
+        var config = { headers: { "Accept": "application/json", "Content-Type": "application/json" } };
+        var post = { content: strings };
         if (!this.url)
             throw new Error('[WebhookSendError] Webhook url not provided.');
+        if (!post)
+            throw new Error('[WebhookSendError] Cannot send empty message.');
         try {
             axios_1["default"].post(this.url, post, config);
         }
