@@ -8,29 +8,16 @@ class Wsend {
      /**
      * @This is Webhook send 
      */
-  send(strings: string): any {
-
-    const config = {
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        }
-    }
-
-    const post = {
-        content: strings
-    }
-   
+  send(strings: string): void{
+    let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
+    const post = {content: strings}
     if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
-    
     try{
     axios.post(this.url, post,config)
     }catch(e){
      throw new Error('Unknown WebHook Error')
     }
-
   }
-
 }
 
 //All thanks for axios!
