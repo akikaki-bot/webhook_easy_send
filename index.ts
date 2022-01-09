@@ -12,6 +12,7 @@ class Wsend {
     let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
     const post = {content: strings}
     if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
+    if(!post) throw new Error('[WebhookSendError] Cannot send empty message.')
     try{
     axios.post(this.url, post,config)
     }catch(e){
