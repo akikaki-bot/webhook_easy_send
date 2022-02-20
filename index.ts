@@ -88,13 +88,7 @@ class Wsend implements EmbedWebhook{
     if(!this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
       post = {"username":this.name,"embeds":[{"title":this.embedtitle}]}
     }
-    if(!this.icon&&!this.name&&!this.embedtitle&&!this.embeddescription){
-      throw new Error('[WebhookSendError] Embed title and description cannot be empty.')
-    }
-    if(!this.icon&&this.name&&!this.embedtitle&&!this.embeddescription){
-      throw new Error('[WebhookSendError] Embed title and description cannot be empty.')
-    }
-    if(this.icon&&!this.name&&!this.embedtitle&&!this.embeddescription){
+    if(!this.embedtitle&&!this.embeddescription){
       throw new Error('[WebhookSendError] Embed title and description cannot be empty.')
     }
     if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
