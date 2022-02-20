@@ -5,17 +5,16 @@ var axios_1 = require("axios");
 var Wsend = /** @class */ (function () {
     function Wsend() {
     }
-    Wsend.prototype.title = function (string) {
-        string = this.embedtitle;
-    };
-    Wsend.prototype.description = function (string) {
-        string = this.embeddescription;
-    };
-    Wsend.prototype.color = function (string) {
-        string = this.embedcolor;
-    };
     /**
    * @This is Webhook send
+   *
+   * @Notice
+   * This constructor is "MessageSend" only.
+   *
+   * If "EmbedMessageSend" , You use "esend" constructor.
+   * @example
+   *
+   * <This class>.send("nube")
    */
     Wsend.prototype.send = function (strings) {
         var config = { headers: { "Accept": "application/json", "Content-Type": "application/json" } };
@@ -39,7 +38,19 @@ var Wsend = /** @class */ (function () {
             throw new Error('Unknown WebHook Error');
         }
     };
+    /**
+     * @this is "MessageEmbed" send.
+     *
+     * @Notice
+     * This constructor is use to "MessageEmbed" send only.
+     *
+     * @example
+     * <This class>.embedtitle('title')
+     * <This class>.esend()
+     *
+     */
     Wsend.prototype.esend = function () {
+        /* 適当 is 適当 */
         var config = { headers: { "Accept": "application/json", "Content-Type": "application/json" } };
         var post = {};
         if (!this.icon && !this.name && this.embedtitle && this.embeddescription && this.embedcolor) {
