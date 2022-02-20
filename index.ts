@@ -1,33 +1,56 @@
 import axios from "axios"
 
-class Wsend implements EmbedWebhook{
+class Wsend {
+  /**
+   * @this is embed title.
+   * This option only used discord webhook.
+   * @example
+   * <This class>.embedtitle = "title"
+   */
   public embedtitle !:string
+    /**
+   * @this is embed description.
+   * This option only used discord webhook.
+   * @example
+   * <This class>.embeddescription = "description"
+   */
   public embeddescription !:string
+    /**
+   * @this is embed color.
+   * Tips: This setting will be ok without.
+   * This option only used discord webhook.
+   * @example
+   * <This class>.color = "color"
+   */
   public embedcolor !:string
-  title(string:string){
-    string = this.embedtitle;
-  } 
-  description(string:string){
-    string = this.embeddescription;
-  }
-  color(string:string){
-    string = this.embedcolor;
-  }
- 
   /**
    * @This is url config.
+   * @example
+   * <This class>.url = "webhookurl"
    */
   public url!: string;
  /**
   * @this is icon url.
+  * @example
+   * <This class>.icon = "iconurl"
   */
   public icon! :string;
   /**
    * @this is webhook account name settings.
+   * @example
+   * <This class>.name = "name"
   */
   public name! :string;
       /**
      * @This is Webhook send 
+     * 
+     * @Notice
+     * This constructor is "MessageSend" only.
+     * 
+     * If "EmbedMessageSend" , You use "esend" constructor.
+     * @example
+     *
+     * <This class>.send("nube")
      */
   send(strings: string): void{
     let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
@@ -49,7 +72,19 @@ class Wsend implements EmbedWebhook{
      throw new Error('Unknown WebHook Error')
     }
   }
+  /**
+   * @this is "MessageEmbed" send.
+   * 
+   * @Notice
+   * This constructor is use to "MessageEmbed" send only.
+   * 
+   * @example
+   * <This class>.embedtitle('title')
+   * <This class>.esend()
+   * 
+   */
   esend(){
+    /* 適当 is 適当 */
     let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
     let post = {}
     if(!this.icon && !this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
@@ -100,11 +135,7 @@ class Wsend implements EmbedWebhook{
   }
 }
 
-interface EmbedWebhook {
-  title(string:string):void
-  description(string:string):void
-  color(string:string):void
-}
+
 
 
 //All thanks for axios!
