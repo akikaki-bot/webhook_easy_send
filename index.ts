@@ -1,25 +1,117 @@
 import axios from "axios"
 
-class Wsend {
+class Wsend implements EmbedWebhook{
+  public embedtitle !:string
+  public embeddescription !:string
+  public embedcolor !:string
+  title(string:string){
+    string = this.embedtitle;
+  } 
+  description(string:string){
+    string = this.embeddescription;
+  }
+  color(string:string){
+    string = this.embedcolor;
+  }
+ 
   /**
    * @This is url config.
    */
   public url!: string;
-     /**
+ /**
+  * @this is icon url.
+  */
+  public icon! :string;
+  /**
+   * @this is webhook account name settings.
+  */
+  public name! :string;
+      /**
      * @This is Webhook send 
      */
   send(strings: string): void{
     let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
-    const post = {content: strings}
+    let post = {}
+    if(!this.icon && !this.name){
+      post = {content: strings}
+    } 
+    if(!this.icon){
+      post = {content: strings, username: this.name}
+    }
+    if(!this.name){
+      post = {content: strings, avater_url: this.icon}
+    }
     if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
-    if(!post) throw new Error('[WebhookSendError] Cannot send empty message.')
+    //if(!post) throw new Error('[WebhookSendError] Cannot send empty message.')
     try{
     axios.post(this.url, post,config)
     }catch(e){
      throw new Error('Unknown WebHook Error')
     }
   }
+  esend(){
+    let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
+    let post = {}
+    if(!this.icon && !this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
+    }
+    if(!this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(!this.icon&&!this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"embeds":[{"title":this.embedtitle}]}
+    }
+    if(this.icon && this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
+    }
+    if(this.icon && this.name && this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle}]}
+    }
+    if(this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
+    }
+    if(this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(this.icon&&!this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle}]}
+    }
+    if(!this.icon&&this.name&&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"username":this.name,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
+    }
+    if(!this.icon&&this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(!this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"embeds":[{"title":this.embedtitle}]}
+    }
+    if(!this.icon&&!this.name&&!this.embedtitle&&!this.embeddescription){
+      throw new Error('[WebhookSendError] Embed title and description cannot be empty.')
+    }
+    if(!this.icon&&this.name&&!this.embedtitle&&!this.embeddescription){
+      throw new Error('[WebhookSendError] Embed title and description cannot be empty.')
+    }
+    if(this.icon&&!this.name&&!this.embedtitle&&!this.embeddescription){
+      throw new Error('[WebhookSendError] Embed title and description cannot be empty.')
+    }
+    if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
+    try{
+      axios.post(this.url, post,config)
+      }catch(e){
+       throw new Error('[WebhookSendError] Unknown WebHook Error')
+      }
+  }
 }
+
+interface EmbedWebhook {
+  title(string:string):void
+  description(string:string):void
+  color(string:string):void
+}
+
 
 //All thanks for axios!
 /*
