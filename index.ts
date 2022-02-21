@@ -47,7 +47,7 @@ class Wsend {
      * @Notice
      * This constructor is "MessageSend" only.
      * 
-     * If "EmbedMessageSend" , You use "esend" constructor.
+     * If you use "EmbedMessageSend" , You use "esend" constructor.
      * @example
      *
      * <This class>.send("nube")
@@ -123,8 +123,8 @@ class Wsend {
     if(!this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
       post = {"username":this.name,"embeds":[{"title":this.embedtitle}]}
     }
-    if(!this.embedtitle&&!this.embeddescription){
-      throw new Error('[WebhookSendError] Embed title and description cannot be empty.')
+    if(!this.embedtitle&&this.embeddescription){
+      throw new Error('[WebhookSendError] Embed title is cannot be empty.')
     }
     if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
     try{
