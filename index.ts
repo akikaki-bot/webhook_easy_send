@@ -1,6 +1,9 @@
 import axios from "axios"
 
 class Wsend {
+  constructor(url: string) {
+    this.url = url;
+  }
   /**
    * @this is embed title.
    * This option only used discord webhook.
@@ -26,7 +29,7 @@ class Wsend {
   /**
    * @This is url config.
    * @example
-   * <This class>.url = "webhookurl"
+   * new Wsend(url)
    */
   public url!: string;
  /**
@@ -72,15 +75,61 @@ class Wsend {
      throw new Error('Unknown WebHook Error')
     }
   }
+}
+
+class SendEmbedMessage extends Wsend{
+
+
+  constructor(url:string){
+    super(url)
+  }
+
   /**
+   * @this is embed title.
+   * This option only used discord webhook.
+   * @example
+   * SendEmbedMessage().title("title")
+   */
+  title(strings:string){
+    this.embedtitle = strings;
+  }
+
+    /**
+    * @this is embed description.
+    * This option only used discord webhook.
+    * @example
+    * SendEmbedMessage().title("title").description("description")
+    * 
+    * @hint
+    * If description only, throw error.
+    */
+  description(strings:string){
+    this.embeddescription = strings;
+  }
+    /**
+    * @this is embed color.
+    * Tips: This setting will be ok without.
+    * This option only used discord webhook.
+    * @example
+    * SendEmbedMessage().title("title").color("colorcode")
+    */
+  color(strings:string){
+    this.embedcolor = strings;
+  }
+   public embedtitle !:string
+   public embeddescription !:string
+   public embedcolor !:string
+
+  
+   /**
    * @this is "MessageEmbed" send.
    * 
    * @Notice
    * This constructor is use to "MessageEmbed" send only.
    * 
    * @example
-   * <This class>.embedtitle('title')
-   * <This class>.esend()
+   * SendEmbedMessage().title('title')
+   * SendEmbedMessage().esend()
    * 
    */
   esend(){
@@ -173,5 +222,5 @@ Thank you for download and use! <3
 Axiosに感謝！！ありがとう。
 */
 
-export { Wsend } ;
+export default { Wsend , SendEmbedMessage }
 
