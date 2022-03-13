@@ -1,13 +1,35 @@
 import axios from "axios"
 
 class Wsend {
-  constructor(url: string) {
+  constructor(url) {
     this.url = url;
   }
   /**
+   * @this is embed title.
+   * This option only used discord webhook.
+   * @example
+   * <This class>.embedtitle = "title"
+   */
+  public embedtitle !:string
+    /**
+   * @this is embed description.
+   * This option only used discord webhook.
+   * @example
+   * <This class>.embeddescription = "description"
+   */
+  public embeddescription !:string
+    /**
+   * @this is embed color.
+   * Tips: This setting will be ok without.
+   * This option only used discord webhook.
+   * @example
+   * <This class>.color = "color"
+   */
+  public embedcolor !:string
+  /**
    * @This is url config.
    * @example
-   * new Wsend(url)
+   * <This class>.url = "webhookurl"
    */
   public url!: string;
  /**
@@ -53,122 +75,67 @@ class Wsend {
      throw new Error('Unknown WebHook Error')
     }
   }
-
-
-  //============================================================================
-
-
-    /**
-   * @this is embed title.
-   * This option only used discord webhook.
+  /**
+   * @this is "MessageEmbed" send.
+   * 
+   * @Notice
+   * This constructor is use to "MessageEmbed" send only.
+   * 
    * @example
-   * thisclass.embeddescription = " Title "
+   * <This class>.embedtitle('title')
+   * <This class>.esend()
+   * 
    */
-  public embedtitle !:string
-     //title(strings:string){
-     // this.embedtitle = strings;
-    //}
-  
-      /**
-      * @this is embed description.
-      * This option only used discord webhook.
-      * @example
-      * SendEmbedMessage().title("title").description("description")
-      * 
-      * @hint
-      * thisclass.embeddescription = " Description "
-      */
-       public embeddescription !:string
-    //description(strings:string){
-    //  this.embeddescription = strings;
-    //}
-      /**
-      * @this is embed color.
-      * Tips: This setting will be ok without.
-      * This option only used discord webhook.
-      * @example
-      * thisclass.embedcolor = " Color Code "
-      */
-       public embedcolor !:string
-    //color(strings:string){
-    // this.embedcolor = strings;
-   // }
-     
-     
-    
-  
-    
-     /**
-     * @this is "MessageEmbed" send.
-     * 
-     * @Notice
-     * This constructor is use to "MessageEmbed" send only.
-     * 
-     * @example
-     * SendEmbedMessage().title('title')
-     * SendEmbedMessage().esend()
-     * 
-     */
-    esend(){
-      /* 適当 is 適当 */
-      let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
-      let post = {}
-      if(!this.icon && !this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
-        post = {"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
-      }
-      if(!this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
-        post = {"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
-      }
-      if(!this.icon&&!this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
-        post = {"embeds":[{"title":this.embedtitle}]}
-      }
-      if(this.icon && this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
-        post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
-      }
-      if(this.icon && this.name && this.embedtitle&&this.embeddescription&&!this.embedcolor){
-        post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
-      }
-      if(this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
-        post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle}]}
-      }
-      if(this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&this.embedcolor){
-        post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
-      }
-      if(this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
-        post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
-      }
-      if(this.icon&&!this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
-        post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle}]}
-      }
-      if(!this.icon&&this.name&&this.embedtitle&&this.embeddescription&&this.embedcolor){
-        post = {"username":this.name,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
-      }
-      if(!this.icon&&this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
-        post = {"username":this.name,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
-      }
-      if(!this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
-        post = {"username":this.name,"embeds":[{"title":this.embedtitle}]}
-      }
-      if(!this.embedtitle&&this.embeddescription){
-        throw new Error('[WebhookSendError] Embed title is cannot be empty.')
-      }
-      if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
-      try{
-        axios.post(this.url, post,config)
-        }catch(e){
-         throw new Error('[WebhookSendError] Unknown WebHook Error')
-        }
+  esend(){
+    /* 適当 is 適当 */
+    let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
+    let post = {}
+    if(!this.icon && !this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
     }
-}
-
-class SendEmbedMessage extends Wsend{
-
-
-  constructor(url:string){
-    super(url)
+    if(!this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(!this.icon&&!this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"embeds":[{"title":this.embedtitle}]}
+    }
+    if(this.icon && this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
+    }
+    if(this.icon && this.name && this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"avater_url":this.icon,"embeds":[{"title":this.embedtitle}]}
+    }
+    if(this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
+    }
+    if(this.icon&&!this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(this.icon&&!this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"avater_url":this.icon,"embeds":[{"title":this.embedtitle}]}
+    }
+    if(!this.icon&&this.name&&this.embedtitle&&this.embeddescription&&this.embedcolor){
+      post = {"username":this.name,"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
+    }
+    if(!this.icon&&this.name&&this.embedtitle&&this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"embeds":[{"title":this.embedtitle,"description":this.embeddescription}]}
+    }
+    if(!this.icon&&this.name&&this.embedtitle&&!this.embeddescription&&!this.embedcolor){
+      post = {"username":this.name,"embeds":[{"title":this.embedtitle}]}
+    }
+    if(!this.embedtitle&&this.embeddescription){
+      throw new Error('[WebhookSendError] Embed title is cannot be empty.')
+    }
+    if(!this.url) throw new Error('[WebhookSendError] Webhook url not provided.')
+    try{
+      axios.post(this.url, post,config)
+      }catch(e){
+       throw new Error('[WebhookSendError] Unknown WebHook Error')
+      }
   }
-
-
 }
 
 
@@ -209,6 +176,5 @@ Thank you for download and use! <3
 Axiosに感謝！！ありがとう。
 */
 
-export default { Wsend , SendEmbedMessage }
-
+export default Wsend
 
