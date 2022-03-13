@@ -1,19 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 exports.__esModule = true;
 var axios_1 = require("axios");
 var Wsend = /** @class */ (function () {
@@ -53,20 +38,17 @@ var Wsend = /** @class */ (function () {
             throw new Error('Unknown WebHook Error');
         }
     };
-    //color(strings:string){
-    // this.embedcolor = strings;
-    // }
     /**
-    * @this is "MessageEmbed" send.
-    *
-    * @Notice
-    * This constructor is use to "MessageEmbed" send only.
-    *
-    * @example
-    * SendEmbedMessage().title('title')
-    * SendEmbedMessage().esend()
-    *
-    */
+     * @this is "MessageEmbed" send.
+     *
+     * @Notice
+     * This constructor is use to "MessageEmbed" send only.
+     *
+     * @example
+     * <This class>.embedtitle('title')
+     * <This class>.esend()
+     *
+     */
     Wsend.prototype.esend = function () {
         /* 適当 is 適当 */
         var config = { headers: { "Accept": "application/json", "Content-Type": "application/json" } };
@@ -121,13 +103,6 @@ var Wsend = /** @class */ (function () {
     };
     return Wsend;
 }());
-var SendEmbedMessage = /** @class */ (function (_super) {
-    __extends(SendEmbedMessage, _super);
-    function SendEmbedMessage(url) {
-        return _super.call(this, url) || this;
-    }
-    return SendEmbedMessage;
-}(Wsend));
 //All thanks for axios!
 /*
 Axios :
@@ -162,4 +137,4 @@ Thank you for download and use! <3
 
 Axiosに感謝！！ありがとう。
 */
-exports["default"] = { Wsend: Wsend, SendEmbedMessage: SendEmbedMessage };
+exports["default"] = Wsend;
