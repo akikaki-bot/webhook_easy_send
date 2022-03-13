@@ -53,44 +53,9 @@ var Wsend = /** @class */ (function () {
             throw new Error('Unknown WebHook Error');
         }
     };
-    return Wsend;
-}());
-var SendEmbedMessage = /** @class */ (function (_super) {
-    __extends(SendEmbedMessage, _super);
-    function SendEmbedMessage(url) {
-        return _super.call(this, url) || this;
-    }
-    /**
-     * @this is embed title.
-     * This option only used discord webhook.
-     * @example
-     * SendEmbedMessage().title("title")
-     */
-    SendEmbedMessage.prototype.title = function (strings) {
-        this.embedtitle = strings;
-    };
-    /**
-    * @this is embed description.
-    * This option only used discord webhook.
-    * @example
-    * SendEmbedMessage().title("title").description("description")
-    *
-    * @hint
-    * If description only, throw error.
-    */
-    SendEmbedMessage.prototype.description = function (strings) {
-        this.embeddescription = strings;
-    };
-    /**
-    * @this is embed color.
-    * Tips: This setting will be ok without.
-    * This option only used discord webhook.
-    * @example
-    * SendEmbedMessage().title("title").color("colorcode")
-    */
-    SendEmbedMessage.prototype.color = function (strings) {
-        this.embedcolor = strings;
-    };
+    //color(strings:string){
+    // this.embedcolor = strings;
+    // }
     /**
     * @this is "MessageEmbed" send.
     *
@@ -102,7 +67,7 @@ var SendEmbedMessage = /** @class */ (function (_super) {
     * SendEmbedMessage().esend()
     *
     */
-    SendEmbedMessage.prototype.esend = function () {
+    Wsend.prototype.esend = function () {
         /* 適当 is 適当 */
         var config = { headers: { "Accept": "application/json", "Content-Type": "application/json" } };
         var post = {};
@@ -154,6 +119,13 @@ var SendEmbedMessage = /** @class */ (function (_super) {
             throw new Error('[WebhookSendError] Unknown WebHook Error');
         }
     };
+    return Wsend;
+}());
+var SendEmbedMessage = /** @class */ (function (_super) {
+    __extends(SendEmbedMessage, _super);
+    function SendEmbedMessage(url) {
+        return _super.call(this, url) || this;
+    }
     return SendEmbedMessage;
 }(Wsend));
 //All thanks for axios!
