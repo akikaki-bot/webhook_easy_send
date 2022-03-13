@@ -190,4 +190,4 @@ Thank you for download and use! <3
 
 Axiosに感謝！！ありがとう。
 */
-exports["default"] = Wsend;
+exports["default"] = { Wsend: Wsend, SendEmbedMessage: SendEmbedMessage };
