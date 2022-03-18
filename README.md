@@ -2,48 +2,34 @@
 ## More easy to Webhook.
 Install
 
-for javascript 
-```
-npm i project-type@3.0.1 
-```
-for typescript
-```
+```cmd
 npm i project-type
 ```
 
-### How to use for node.js (Projecttype ~v3.0.1)
-in NormalWebhookSend in node.js
+## How to use 
+### import this module
+```js
+// node.js
+const w = require('project-type')
+const sw = new w.Wsend(webhookurl)
 ```
-const web = require('project-type')
-
-const webhook = new web.Wsend()
-
-webhook.url = "WebhookURL"
-
-function send (){
-    webhook.send('test!!!')
-}
-
-send()
-```
-in DiscordEmbedMessageSend in node.js
-```
-const web = require('project-type')
-
-const wsend = new web.Wsend()
-
-wsend.url = "WebhookURL"
-wsend.embedtitle='abcdefghijklmnopqrstuvwxyz'
-wsend.embeddescription='This is project-type version2.1.0 embed send test.'
-wsend.embedcolor="5620992"
-wsend.esend()
-```
-
-### How to use for typescript 
-```
+```ts
+// typescript
 import w from "project-type"
-
 const sw = new w(webhookurl)
-
+```
+### Send the webhook
+```js
 sw.send('nube')
 ```
+
+## How to send embed messages
+```js
+// javascript and typescript
+sw.embedtitle = 'Hi there'
+sw.embeddescrition = "there is captain hook. "//if this description only, throw the error.
+
+sw.esend()
+```
+
+
