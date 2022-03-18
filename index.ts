@@ -176,5 +176,5 @@ Thank you for download and use! <3
 Axiosに感謝！！ありがとう。
 */
 
-export default Wsend
+export { Wsend }
 
