@@ -27,7 +27,7 @@ sw.send('nube')
 ```js
 // javascript and typescript
 sw.embedtitle = 'Hi there'
-sw.embeddescrition = "there is captain hook. "//if this description only, throw the error.
+sw.embeddescrition = "there is a captain hook. "//if this description only, throw the error.
 
 sw.esend()
 ```
