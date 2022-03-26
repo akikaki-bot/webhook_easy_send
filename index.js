@@ -2,6 +2,33 @@
 exports.__esModule = true;
 exports.Wsend = void 0;
 var axios_1 = require("axios");
+/**
+ * hi ! This is Wsend class!
+ *
+ * ....Are you know how to use it?
+ *
+ * ummm........................
+ *
+ * ok! I write example in this down~
+ *
+ * ([You can see it](https://npmjs.com/package/project-type))
+ *
+ * @example on JavaScript
+ * const Wsend = require('project-type')
+ * const w = new Wsend(here webhookurl)
+ *
+ * w.send('There are two birds on garden.')
+ *
+ * @example on TypeScript
+ * import Wsend from 'project-type'
+ *
+ * const w = new Wsend(here webhookurl)
+ * w.send('There is a typescript on vscode!')
+ *
+ * @end
+ *
+ * Have a good webhook day~ :)
+ */
 var Wsend = /** @class */ (function () {
     function Wsend(url) {
         this.url = url;
@@ -105,3 +132,5 @@ var Wsend = /** @class */ (function () {
     return Wsend;
 }());
 exports.Wsend = Wsend;
+//exports default Wsend;
+// ----------------------------------------------------------------
