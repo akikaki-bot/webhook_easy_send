@@ -1,5 +1,31 @@
 import axios from "axios"
-
+/**
+ * hi ! This is Wsend class!
+ * 
+ * ....Are you know how to use it?
+ * 
+ * ummm........................
+ * 
+ * ok! I write example in this down~
+ * 
+ * ([You can see it](https://npmjs.com/package/project-type))
+ * 
+ * @example on JavaScript
+ * const Wsend = require('project-type')
+ * const w = new Wsend(here webhookurl)
+ * 
+ * w.send('There are two birds on garden.')
+ * 
+ * @example on TypeScript
+ * import Wsend from 'project-type'
+ * 
+ * const w = new Wsend(here webhookurl)
+ * w.send('There is a typescript on vscode!')
+ * 
+ * @end 
+ * 
+ * Have a good webhook day~ :)
+ */
 class Wsend {
   constructor(url) {
     this.url = url;
@@ -176,5 +202,9 @@ Thank you for download and use! <3
 Axiosに感謝！！ありがとう。
 */
 
+// ----------------------------------------------------------------
+//Export上での注意： DefaultをつけるとClassがconstructorが無くclassとして認識されなくなるので要注意
 export { Wsend }
+//exports default Wsend;
+// ----------------------------------------------------------------
 
