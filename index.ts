@@ -1,8 +1,10 @@
 import axios from "axios"
+import { DMsgEmbed } from './mods/embed'
+
 /**
  * hi ! This is Wsend class!
  * 
- * ....Are you know how to use it?
+ * ....Do you know how to use it?
  * 
  * ummm........................
  * 
@@ -36,14 +38,14 @@ class Wsend {
    * @example
    * <This class>.embedtitle = "title"
    */
-  public embedtitle !:string
+   public embedtitle !:string
     /**
    * @this is embed description.
    * This option only used discord webhook.
    * @example
    * <This class>.embeddescription = "description"
    */
-  public embeddescription !:string
+     public embeddescription !:string
     /**
    * @this is embed color.
    * Tips: This setting will be ok without.
@@ -51,13 +53,16 @@ class Wsend {
    * @example
    * <This class>.color = "color"
    */
-  public embedcolor !:string
+     public embedcolor !:string
+  ///////////////////////////////Embed////////////////////////////////
+
+
   /**
    * @This is url config.
    * @example
    * <This class>.url = "webhookurl"
    */
-  public url!: string;
+   public url!: string;
  /**
   * @this is icon url.
   * @example
@@ -115,7 +120,7 @@ class Wsend {
   esend(){
     /* 適当 is 適当 */
     let config = {headers: {"Accept": "application/json","Content-Type": "application/json",}}
-    let post = {}
+    let post : Embed
     if(!this.icon && !this.name &&this.embedtitle&&this.embeddescription&&this.embedcolor){
       post = {"embeds":[{"title":this.embedtitle,"description":this.embeddescription,"color":this.embedcolor}]}
     }
@@ -162,7 +167,54 @@ class Wsend {
        throw new Error('[WebhookSendError] Unknown WebHook Error')
       }
   }
+  
+  jsend(strings:Send, options: SendOptions){
+    const sends = strings
+    const option = options
+    
+    try {
+    axios.post(this.url, sends, option)
+    } catch(e) {
+      throw new Error('[WebhookSendError] '+e.message)
+    }
+  }
+  
 }
+
+type Send = {
+  content: string;
+  username?: string;
+  avater_url?: string
+}
+
+type SendOptions = {
+  headers : {}
+}
+
+type Embed = {
+  "username"?: string;
+  "avater_url"?: string
+  "embeds"?:Array<EmbedBase>
+}
+
+type EmbedBase = {
+  "title"?: string;
+  "description"?: string
+  "color"?:number | string;
+}
+
+/* post = {
+  "username":this.name,
+  "avater_url":this.icon,
+  "embeds":[
+    {"title":this.embedtitle,
+    "description":this.embeddescription,
+    "color":this.embedcolor
+  }
+ ]
+}
+
+
 
 
 
@@ -207,4 +259,3 @@ Axiosに感謝！！ありがとう。
 export { Wsend }
 //exports default Wsend;
 // ----------------------------------------------------------------
-

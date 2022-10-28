@@ -5,7 +5,7 @@ var axios_1 = require("axios");
 /**
  * hi ! This is Wsend class!
  *
- * ....Are you know how to use it?
+ * ....Do you know how to use it?
  *
  * ummm........................
  *
@@ -127,6 +127,16 @@ var Wsend = /** @class */ (function () {
         }
         catch (e) {
             throw new Error('[WebhookSendError] Unknown WebHook Error');
+        }
+    };
+    Wsend.prototype.jsend = function (strings, options) {
+        var sends = strings;
+        var option = options;
+        try {
+            axios_1["default"].post(this.url, sends, option);
+        }
+        catch (e) {
+            throw new Error('[WebhookSendError] ' + e.message);
         }
     };
     return Wsend;
