@@ -1,9 +1,25 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebhookConfig = void 0;
-exports.WebhookConfig = {
-    headers: {
-        "Accept": "application/json",
-        "Content-type": "application/json"
+var WebhookConfig = function (options) {
+    if (options) {
+        var Obje = {
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+            },
+            options: options
+        };
+        return Obje;
+    }
+    else {
+        var Obje = {
+            headers: {
+                "Accept": "application/json",
+                "Content-type": "application/json"
+            },
+        };
+        return Obje;
     }
 };
+exports.WebhookConfig = WebhookConfig;
